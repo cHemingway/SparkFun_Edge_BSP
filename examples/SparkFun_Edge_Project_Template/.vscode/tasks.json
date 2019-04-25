@@ -1,0 +1,79 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "process",
+            "windows": {
+                "command": "C:\\Program Files\\Git\\bin\\bash.exe",
+                "args": [
+                    "-c",
+                    "\"make",
+                    "TOOLCHAIN=~/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/*/.content/bin/arm-none-eabi"
+                ]
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/gcc"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated"
+            },
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}/gcc"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "clean",
+            "type": "process",
+            "windows": {
+                "command": "C:\\Program Files\\Git\\bin\\bash.exe",
+                "args": [
+                    "-c",
+                    "\"make",
+                    "clean",
+                    "TOOLCHAIN=~/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/*/.content/bin/arm-none-eabi"
+                ]
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/gcc"
+            }
+        },
+        {
+            "label": "bootload",
+            "type": "process",
+            "windows": {
+                "command": "C:\\Program Files\\Git\\bin\\bash.exe",
+                "args": [
+                    "-c",
+                    "\"make",
+                    "bootload",
+                    "TOOLCHAIN=~/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/*/.content/bin/arm-none-eabi"
+                ]
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/gcc"
+            },
+            // TODO: Match both C and Python problems here
+            "problemMatcher": []
+        }
+    ]
+  }
