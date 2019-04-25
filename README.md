@@ -18,14 +18,16 @@ Clone or download then extract or symlink this repo into the ```SDK/boards/``` d
 
 Follow the Sparkfun Steps for the rest of the toolchain.
 
-- [x] Supports Windows, with Git Bash, GNU MCU Eclipse [Build Tools](https://gnu-mcu-eclipse.github.io/windows-build-tools/) and [ARM Toolchain](https://gnu-mcu-eclipse.github.io/toolchain/arm/install/) installed via xpacks. Should be very easy to change toolchain in `task.json` if needed.
+- [x] Supports Windows, with Git Bash, GNU MCU Eclipse [Build Tools](https://gnu-mcu-eclipse.github.io/windows-build-tools/) and [ARM Toolchain](https://gnu-mcu-eclipse.github.io/toolchain/arm/install/) installed via [xpack](https://github.com/xpack/xpm-js). Should be very easy to change toolchain in `task.json` if needed.
 - [x] Tasks for make, clean and bootloader
+  - [x] Tasks autodetects users installation of ARM Toolchain, provided it is installed with xpack
 - [x] Intellisense, with correct headers
   - [x] Correct defines to match Makefile
   - [x] No multiple definitions for BSP functions, as other boards are excluded.
-- [] TODO: Debugging with [Cortex-Debug](https://marcelball.ca/projects/cortex-debug/) and J-Link hardware
-- [] Get TensorFlow example C complilation/debug working
-  - [] Integrate all TensorFlow build steps in VS Code.
+- [ ] Find way of automatically locating toolchain for `c_cpp_properties.json` also
+- [ ] Debugging with [Cortex-Debug](https://marcelball.ca/projects/cortex-debug/) and J-Link hardware
+- [ ] Get TensorFlow example C complilation/debug working
+  - [ ] Integrate all TensorFlow build steps in VS Code.
 
 ## Examples
 This repo contains several example projects. 
