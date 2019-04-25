@@ -1,16 +1,16 @@
 # # Compile artifacts
-# *.axf
-# *.bin
-# *.lst
+*.axf
+*.bin
+*.lst
 
 # # Prerequisites
-# *.d
+*.d
 
 # # Object files
-# *.o
-# *.ko
-# *.obj
-# *.elf
+*.o
+*.ko
+*.obj
+*.elf
 
 # Linker output
 *.ilk
@@ -56,11 +56,11 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-
-
 # IDE stuff
-.vscode
+# .vscode
 
+# VS Code Symbols
+*.ipch
 
 # Default SDK files/directories
 AM-BSD-EULA.txt
