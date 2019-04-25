@@ -1,5 +1,9 @@
-# SparkFun_TensorFlow_Apollo3_BSP
-BSP and examples to integrate the SparkFun TensorFlow board with the AmbiqSuite SDK. 
+# Edge_BSP_VSCode
+
+
+[SparkFun_Edge_BSP](https://github.com/sparkfun/SparkFun_Edge_BSP) with rough Visual Studio Code support on Windows.
+
+**Only `SparkFun_Edge_Project_Template` is working for now**
 
 # Associated Documentation
 * **[Edge Board Hookup Guide](https://learn.sparkfun.com/tutorials/sparkfun-edge-hookup-guide)** - Basic hookup guide for the SparkFun Edge.
@@ -10,16 +14,24 @@ BSP and examples to integrate the SparkFun TensorFlow board with the AmbiqSuite 
 
 Clone or download then extract or symlink this repo into the ```SDK/boards/``` directory. 
 
+## VS Code Usage
+
+Follow the Sparkfun Steps for the rest of the toolchain.
+
+- [x] Supports Windows, with Git Bash, GNU MCU Eclipse [Build Tools](https://gnu-mcu-eclipse.github.io/windows-build-tools/) and [ARM Toolchain](https://gnu-mcu-eclipse.github.io/toolchain/arm/install/) installed via xpacks. Should be very easy to change toolchain in `task.json` if needed.
+- [x] Tasks for make, clean and bootloader
+- [x] Intellisense, with correct headers
+  - [x] Correct defines to match Makefile
+  - [x] No multiple definitions for BSP functions, as other boards are excluded.
+- [] TODO: Debugging with [Cortex-Debug](https://marcelball.ca/projects/cortex-debug/) and J-Link hardware
+- [] Get TensorFlow example C complilation/debug working
+  - [] Integrate all TensorFlow build steps in VS Code.
+
 ## Examples
 This repo contains several example projects. 
-* **example1_edge_test** demonstrates the hardware features of the board. The makefile is preconfigured with relative paths.
-  * To compile with gcc and flash use the makefile in the gcc subdirectory. 
-    * Edit 'COM_PORT' variable to specify where to try UART flashing
-    * make
-    * make clean
-    * make bootload
-* **example2_dual_mic_dma** shows how to use DMA to capture 16 kHz audio recordings from both microphones without blocking the processor. This is the basis of how audio is provided to the TensorFlow Lite demo.
-* **tensorflow_demo** uses a pre-trained model to identify "yes" and "no" and blink a corresponding LED on the board. Using GPIO you could easily expand this example to control a device. 
+
+* **tensorflow_demo** uses a pre-trained model to identify "yes" and "no" and blink a corresponding LED on the board. Using GPIO you could easily expand this example to control a device.  **NOT YET WORKING WITH VS CODE**
+
 * **SparkFun_Edge_Project_Template** has a relatively easy to set up makefile with some example header files and source files included. You can copy this directory to an arbitraty location on your filesystem to begin a new project. 
   * You must provide the absolute path to the SDK root directory in the 'SDKPATH' variable
   * Also update the COM_PORT variable to match your setup
