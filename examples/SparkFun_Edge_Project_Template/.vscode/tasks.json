@@ -1,20 +1,53 @@
 {
     "version": "2.0.0",
+    // Shared options for all tasks
+    "options": {
+        "cwd": "${workspaceRoot}/gcc"
+    },
+
+    // Shared inputs
+    "inputs": [
+        {
+            "id": "serial_port",
+            "type": "promptString",
+            "description": "What is the serial port of your board?",
+            "default": "COM3"
+        },
+        {
+            "id": "sdk_path",
+            "type": "promptString",
+            "description": "What is the relative path to the SDK?",
+            "default": "../../../../.."
+        },
+        // Windows specific settings here, as make and arm-none-eabi-gcc will not be installed globally
+        {
+            "id": "make_path",
+            "type": "promptString",
+            "description": "Where is make installed?",
+            "default": "~/AppData/Roaming/xPacks/@gnu-mcu-eclipse/windows-build-tools/*/.content/bin/make"
+        },
+        {
+            "id": "toolchain_path",
+            "type": "promptString",
+            "description": "Where is the toolchain installed?",
+            "default": "~/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/*/.content/bin/arm-none-eabi"
+        }
+    ],
+
     "tasks": [
         {
             "label": "build",
-            "type": "process",
             "windows": {
+                "type": "process",
                 "command": "C:\\Program Files\\Git\\bin\\bash.exe",
                 "args": [
                     "-c",
-                    "\"make",
-                    "TOOLCHAIN=~/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/*/.content/bin/arm-none-eabi"
+                    "${input:make_path} TOOLCHAIN=$(cygpath '${input:toolchain_path}') SDKPATH=$(cygpath '${input:sdk_path}')"
                 ]
             },
-            "options": {
-                "cwd": "${workspaceRoot}/gcc"
-            },
+            // Linux or OSX command
+            "type" :"shell",
+            "command": "make",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -43,37 +76,48 @@
         },
         {
             "label": "clean",
-            "type": "process",
             "windows": {
+                "type": "process",
                 "command": "C:\\Program Files\\Git\\bin\\bash.exe",
                 "args": [
                     "-c",
-                    "\"make",
-                    "clean",
-                    "TOOLCHAIN=~/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/*/.content/bin/arm-none-eabi"
+                    "${input:make_path} clean TOOLCHAIN=$(cygpath '${input:toolchain_path}')"
                 ]
             },
-            "options": {
-                "cwd": "${workspaceRoot}/gcc"
-            }
+            // Linux / OSX command
+            "type" :"shell",
+            "command": "make clean",
+            "problemMatcher": []
         },
         {
             "label": "bootload",
-            "type": "process",
             "windows": {
+                "type": "process",
                 "command": "C:\\Program Files\\Git\\bin\\bash.exe",
                 "args": [
                     "-c",
-                    "\"make",
-                    "bootload",
-                    "TOOLCHAIN=~/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/*/.content/bin/arm-none-eabi"
+                    "${input:make_path} bootload TOOLCHAIN=$(cygpath '${input:toolchain_path}') SDKPATH=$(cygpath '${input:sdk_path}') SERIAL_PORT=${input:serial_port}"
                 ]
             },
-            "options": {
-                "cwd": "${workspaceRoot}/gcc"
-            },
-            // TODO: Match both C and Python problems here
-            "problemMatcher": []
+            // Linux / OSX command
+            "type" :"shell",
+            "command": "make bootload SDKPATH=${input:sdk_path} SERIAL_PORT=${input:serial_port}",
+            // Problem matcher, same as compile as bootload will compile project as well
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}/gcc"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
         }
     ]
-  }
+}
