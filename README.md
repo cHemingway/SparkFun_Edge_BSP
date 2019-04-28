@@ -37,3 +37,5 @@ This repo contains several example projects.
 * **SparkFun_Edge_Project_Template** has a relatively easy to set up makefile with some example header files and source files included. You can copy this directory to an arbitraty location on your filesystem to begin a new project. 
   * You must provide the absolute path to the SDK root directory in the 'SDKPATH' variable
   * Also update the COM_PORT variable to match your setup
+
+* **bluetooth_tag** only on the bluetooth_beacon branch, very experimental port of cordio_tag example from Apollo3 devkit
