@@ -138,8 +138,9 @@ enable_print_interface(void)
 {
     //
     // Initialize a debug printing interface.
+    // Changed to use UART on Sparkfun Edge
     //
-    am_bsp_itm_printf_enable();
+    am_bsp_uart_printf_enable();
 }
 
 
@@ -527,10 +528,15 @@ main(void)
     //
     HciDrvRadioBoot(0);
 
+    am_util_debug_printf("Radio Booted\n");
+
+
     //
     // Initialize the main ExactLE stack.
     //
     exactle_stack_init();
+
+    am_util_debug_printf("Stack Init\n");
 
     //
     // Prep the buttons for use
@@ -541,6 +547,8 @@ main(void)
     // Start the "Fit" profile.
     //
     TagStart();
+
+    am_util_debug_printf("Tag Start\n");
 
     while (TRUE)
     {
