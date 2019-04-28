@@ -541,7 +541,7 @@ main(void)
     //
     // Prep the buttons for use
     //
-    //setup_buttons();
+    setup_buttons();
 
     //
     // Start the "Fit" profile.
