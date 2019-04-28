@@ -386,11 +386,6 @@ button_handler(wsfEventMask_t event, wsfMsgHdr_t *pMsg)
         AppUiBtnTest(APP_UI_BTN_1_SHORT);
     }
 
-    if ( am_devices_button_released(am_bsp_psButtons[1]) )
-    {
-        am_util_debug_printf("Got Button 1 Press\n");
-        AppUiBtnTest(APP_UI_BTN_1_SHORT);
-    }
 }
 
 //*****************************************************************************
