@@ -37,7 +37,10 @@
                 "PART_apollo3",
                 "AM_PART_APOLLO3"
             ],
-            "compilerPath": "C:/Users/chris/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.4.1/.content/bin/arm-none-eabi-gcc.exe",
+            "windows": {
+                "compilerPath": "C:/Users/chris/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.4.1/.content/bin/arm-none-eabi-gcc.exe -mcpu=cortex-m4"
+            },
+            "compilerPath":"/usr/local/bin/arm-none-eabi-gcc -mcpu=cortex-m4",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x64"
