@@ -103,6 +103,7 @@ DEFINES = -DPART_$(PART)
 DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_PART_APOLLO3
 DEFINES+= -DAM_DEBUG_PRINTF
+DEFINES+= -DWSF_TRACE_ENABLED
 
 # Includes from the SDK
 # INCLUDES+= -I../../../../.. # This one doesn't make much sense to me
