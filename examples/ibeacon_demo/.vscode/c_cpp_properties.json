@@ -1,0 +1,50 @@
+{
+    "env": {
+        "SDKPATH" : "${workspaceFolder}/../../../../",
+        "BOARDPATH": "${SDKPATH}/boards/SparkFun_Edge_BSP"
+    },
+    "configurations": [
+        {
+            "name": "ARM",
+            "includePath": [
+                "${SDKPATH}/CMSIS/AmbiqMicro/Include",
+                "${SDKPATH}/mcu/apollo3",
+                "${SDKPATH}/CMSIS/ARM/Include",
+                "${SDKPATH}/utils",
+                "${SDKPATH}/devices",
+                "${workspaceFolder}/src",
+                "${BOARDPATH}/bsp",
+                "${workspaceFolder}/src/inc1",
+                "${workspaceFolder}/src/inc2"
+            ],
+            "browse":{
+                 "path": [
+                     "${SDKPATH}/ambiq_ble",
+                     "${SDKPATH}/bootloader",
+                     "${SDKPATH}/CMSIS",
+                     "${SDKPATH}/devices",
+                     "${SDKPATH}/docs",
+                     "${SDKPATH}/mcu/apollo3",
+                     "${SDKPATH}/pack",
+                     "${SDKPATH}/utils",
+                     "${BOARDPATH}",
+                     "${workspaceFolder}/src"
+                    ],
+                 "limitSymbolsToIncludedHeaders": true
+            },
+            "defines": [
+                "AM_PACKAGE_BGA",
+                "PART_apollo3",
+                "AM_PART_APOLLO3"
+            ],
+            "windows": {
+                "compilerPath": "C:/Users/chris/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.4.1/.content/bin/arm-none-eabi-gcc.exe -mcpu=cortex-m4"
+            },
+            "compilerPath":"/usr/local/bin/arm-none-eabi-gcc -mcpu=cortex-m4",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

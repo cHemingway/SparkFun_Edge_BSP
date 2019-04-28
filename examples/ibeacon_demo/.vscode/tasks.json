@@ -1,0 +1,117 @@
+{
+    "version": "2.0.0",
+    // Shared options for all tasks
+    "options": {
+        "cwd": "${workspaceRoot}/gcc"
+    },
+
+    // Shared inputs
+    "inputs": [
+        {
+            "id": "serial_port",
+            "type": "promptString",
+            "description": "What is the serial port of your board?",
+            "default": "/dev/tty.wchusbserial1420"
+        },
+        // Windows specific settings here, as make and arm-none-eabi-gcc will not be installed globally
+        {
+            "id": "make_path",
+            "type": "promptString",
+            "description": "Where is make installed?",
+            "default": "~/AppData/Roaming/xPacks/@gnu-mcu-eclipse/windows-build-tools/*/.content/bin/make"
+        },
+        {
+            "id": "toolchain_path",
+            "type": "promptString",
+            "description": "Where is the toolchain installed?",
+            "default": "~/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/*/.content/bin/arm-none-eabi"
+        }
+    ],
+
+    "tasks": [
+        {
+            "label": "build",
+            "windows": {
+                "type": "process",
+                "command": "C:\\Program Files\\Git\\bin\\bash.exe",
+                "args": [
+                    "-c",
+                    "${input:make_path} TOOLCHAIN=$(cygpath '${input:toolchain_path}') SDKPATH=../../../../.."
+                ]
+            },
+            // Linux or OSX command
+            "type" :"shell",
+            "command": "make SDKPATH=../../../../..",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated"
+            },
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}/gcc"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "clean",
+            "windows": {
+                "type": "process",
+                "command": "C:\\Program Files\\Git\\bin\\bash.exe",
+                "args": [
+                    "-c",
+                    "${input:make_path} clean TOOLCHAIN=$(cygpath '${input:toolchain_path}')"
+                ]
+            },
+            // Linux / OSX command
+            "type" :"shell",
+            "command": "make clean",
+            "problemMatcher": []
+        },
+        {
+            "label": "bootload",
+            "windows": {
+                "type": "process",
+                "command": "C:\\Program Files\\Git\\bin\\bash.exe",
+                "args": [
+                    "-c",
+                    "${input:make_path} bootload TOOLCHAIN=$(cygpath '${input:toolchain_path}') SDKPATH=../../../../.. COM_PORT=${input:serial_port}"
+                ]
+            },
+            // Linux / OSX command
+            "type" :"shell",
+            "command": "make bootload SDKPATH=../../../../.. COM_PORT=${input:serial_port}",
+            // Problem matcher, same as compile as bootload will compile project as well
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}/gcc"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        }
+    ]
+}
