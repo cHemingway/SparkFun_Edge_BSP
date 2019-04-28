@@ -96,12 +96,12 @@
                 "command": "C:\\Program Files\\Git\\bin\\bash.exe",
                 "args": [
                     "-c",
-                    "${input:make_path} bootload TOOLCHAIN=$(cygpath '${input:toolchain_path}') SDKPATH=$(cygpath '${input:sdk_path}') SERIAL_PORT=${input:serial_port}"
+                    "${input:make_path} bootload TOOLCHAIN=$(cygpath '${input:toolchain_path}') SDKPATH=$(cygpath '${input:sdk_path}') COM_PORT=${input:serial_port}"
                 ]
             },
             // Linux / OSX command
             "type" :"shell",
-            "command": "make bootload SDKPATH=${input:sdk_path} SERIAL_PORT=${input:serial_port}",
+            "command": "make bootload SDKPATH=${input:sdk_path} COM_PORT=${input:serial_port}",
             // Problem matcher, same as compile as bootload will compile project as well
             "problemMatcher": {
                 "owner": "cpp",
