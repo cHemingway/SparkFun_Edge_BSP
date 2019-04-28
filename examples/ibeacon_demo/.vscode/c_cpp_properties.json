@@ -1,6 +1,6 @@
 {
     "env": {
-        "SDKPATH" : "${workspaceFolder}/../../../../",
+        "SDKPATH": "${workspaceFolder}/../../../../",
         "BOARDPATH": "${SDKPATH}/boards/SparkFun_Edge_BSP"
     },
     "configurations": [
@@ -14,23 +14,66 @@
                 "${SDKPATH}/devices",
                 "${workspaceFolder}/src",
                 "${BOARDPATH}/bsp",
-                "${workspaceFolder}/src/inc1",
-                "${workspaceFolder}/src/inc2"
+                "${SDKPATH}/third_party/exactle/ws-core/sw/util",
+                "${SDKPATH}/third_party/exactle/sw/profiles/hid",
+                "${SDKPATH}/third_party/exactle/sw/apps/app/include",
+                "${SDKPATH}/third_party/exactle/sw/profiles/gatt",
+                "${SDKPATH}/third_party/exactle/sw/services",
+                "${SDKPATH}/third_party/exactle/sw/profiles/gap",
+                "${SDKPATH}/third_party/exactle/sw/hci/include",
+                "${SDKPATH}/third_party/exactle/sw/hci/ambiq",
+                "${SDKPATH}/third_party/exactle/sw/profiles/bas",
+                "${SDKPATH}/third_party/exactle/ws-core/sw/wsf/ambiq",
+                "${SDKPATH}/third_party/exactle/sw/hci/ambiq/apollo3",
+                "${SDKPATH}/third_party/exactle/sw/stack/hci",
+                "${SDKPATH}/third_party/exactle/sw/profiles/wdxs",
+                "${SDKPATH}/third_party/exactle/sw/apps/app",
+                "${SDKPATH}/third_party/uecc/micro-ecc",
+                "${SDKPATH}/third_party/exactle/sw/sec/include",
+                "${SDKPATH}/third_party/exactle/sw/stack/include",
+                "${SDKPATH}/third_party/exactle/sw/apps/tag",
+                "${SDKPATH}/third_party/exactle/ws-core/sw/wsf/include",
+                "${SDKPATH}/third_party/exactle/sw/profiles/uribeacon",
+                "${SDKPATH}/third_party/exactle/sw/sec/common",
+                "${SDKPATH}/third_party/exactle/ws-core/include",
+                "${SDKPATH}/third_party/exactle/sw/profiles/fmpl",
+                "${SDKPATH}/third_party/exactle/apollo-host/projects/common",
+                "${SDKPATH}/third_party/exactle/sw/stack/cfg"
             ],
-            "browse":{
-                 "path": [
-                     "${SDKPATH}/ambiq_ble",
-                     "${SDKPATH}/bootloader",
-                     "${SDKPATH}/CMSIS",
-                     "${SDKPATH}/devices",
-                     "${SDKPATH}/docs",
-                     "${SDKPATH}/mcu/apollo3",
-                     "${SDKPATH}/pack",
-                     "${SDKPATH}/utils",
-                     "${BOARDPATH}",
-                     "${workspaceFolder}/src"
-                    ],
-                 "limitSymbolsToIncludedHeaders": true
+            "browse": {
+                "path": [
+                    "${SDKPATH}/ambiq_ble",
+                    "${SDKPATH}/bootloader",
+                    "${SDKPATH}/CMSIS",
+                    "${SDKPATH}/devices",
+                    "${SDKPATH}/docs",
+                    "${SDKPATH}/mcu/apollo3",
+                    "${SDKPATH}/pack",
+                    "${SDKPATH}/utils",
+                    "${SDKPATH}/third_party/exactle/",
+                    "${BOARDPATH}",
+                    "${workspaceFolder}/src",
+                    "${SDKPATH}/third_party/exactle/ws-core/sw/util",
+                    "${SDKPATH}/third_party/exactle/sw/profiles/hid",
+                    "${SDKPATH}/third_party/exactle/sw/hci/ambiq/apollo3",
+                    "${SDKPATH}/third_party/exactle/sw/apps/hidapp",
+                    "${SDKPATH}/third_party/exactle/sw/profiles/gatt",
+                    "${SDKPATH}/third_party/exactle/sw/services",
+                    "${SDKPATH}/third_party/exactle/sw/profiles/gap",
+                    "${SDKPATH}/third_party/exactle/sw/stack/hci",
+                    "${SDKPATH}/third_party/exactle/sw/hci/ambiq",
+                    "${SDKPATH}/third_party/exactle/sw/apps/app",
+                    "${SDKPATH}/third_party/exactle/sw/profiles/bas",
+                    "${SDKPATH}/third_party/exactle/sw/stack/cfg",
+                    "${SDKPATH}/third_party/exactle/sw/apps/tag",
+                    "${SDKPATH}/third_party/exactle/ws-core/sw/wsf/common",
+                    "${SDKPATH}/third_party/exactle/ws-core/sw/wsf/ambiq",
+                    "${SDKPATH}/third_party/exactle/sw/apps/app/generic",
+                    "${SDKPATH}/third_party/exactle/sw/sec/common",
+                    "${SDKPATH}/third_party/exactle/sw/profiles/fmpl",
+                    "${SDKPATH}/third_party/uecc/micro-ecc"
+                ],
+                "limitSymbolsToIncludedHeaders": true
             },
             "defines": [
                 "AM_PACKAGE_BGA",
@@ -40,7 +83,7 @@
             "windows": {
                 "compilerPath": "C:/Users/chris/AppData/Roaming/xPacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.4.1/.content/bin/arm-none-eabi-gcc.exe -mcpu=cortex-m4"
             },
-            "compilerPath":"/usr/local/bin/arm-none-eabi-gcc -mcpu=cortex-m4",
+            "compilerPath": "/usr/local/bin",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x64"
