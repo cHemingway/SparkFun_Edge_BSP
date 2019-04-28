@@ -102,6 +102,7 @@ else
 DEFINES = -DPART_$(PART)
 DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_PART_APOLLO3
+DEFINES+= -DAM_DEBUG_PRINTF
 
 # Includes from the SDK
 # INCLUDES+= -I../../../../.. # This one doesn't make much sense to me
@@ -111,18 +112,135 @@ INCLUDES+= -I${SDKPATH}/CMSIS/ARM/Include
 INCLUDES+= -I${SDKPATH}/utils
 INCLUDES+= -I${SDKPATH}/devices
 
+# BLE Includes
+INCLUDES+= -I${SDKPATH}/third_party/exactle/ws-core/sw/util
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/profiles/hid
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/apps/app/include
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/profiles/gatt
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/services
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/profiles/gap
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/hci/include
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/hci/ambiq
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/profiles/bas
+INCLUDES+= -I${SDKPATH}/third_party/exactle/ws-core/sw/wsf/ambiq
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/hci/ambiq/apollo3
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/stack/hci
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/profiles/wdxs
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/apps/app
+INCLUDES+= -I${SDKPATH}/third_party/uecc/micro-ecc
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/sec/include
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/stack/include
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/apps/tag
+INCLUDES+= -I${SDKPATH}/third_party/exactle/ws-core/sw/wsf/include
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/profiles/uribeacon
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/sec/common
+INCLUDES+= -I${SDKPATH}/third_party/exactle/ws-core/include
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/profiles/fmpl
+INCLUDES+= -I${SDKPATH}/third_party/exactle/apollo-host/projects/common
+INCLUDES+= -I${SDKPATH}/third_party/exactle/sw/stack/cfg
+
+
 # Includes for the board you've chosen
 INCLUDES+= -I../src # This is where the source for the particular project is
 INCLUDES+= -I${BOARDPATH}/bsp
 
 INCLUDES+= ${USER_INCLUDE_DIRS}
 
-VPATH = ${SDKPATH}/devices
+# Paths for bluetooth library
+VPATH = ${SDKPATH}/third_party/exactle/ws-core/sw/util
+VPATH+=:${SDKPATH}/third_party/exactle/sw/profiles/hid
+VPATH+=:${SDKPATH}/third_party/exactle/sw/hci/ambiq/apollo3
+VPATH+=:${SDKPATH}/third_party/exactle/sw/apps/hidapp
+VPATH+=:${SDKPATH}/third_party/exactle/sw/profiles/gatt
+VPATH+=:${SDKPATH}/third_party/exactle/sw/services
+VPATH+=:${SDKPATH}/third_party/exactle/sw/profiles/gap
+VPATH+=:${SDKPATH}/third_party/exactle/sw/stack/hci
+VPATH+=:${SDKPATH}/third_party/exactle/sw/hci/ambiq
+VPATH+=:${SDKPATH}/third_party/exactle/sw/apps/app
+VPATH+=:${SDKPATH}/third_party/exactle/sw/profiles/bas
+VPATH+=:${SDKPATH}/third_party/exactle/sw/stack/cfg
+VPATH+=:${SDKPATH}/third_party/exactle/sw/apps/tag
+VPATH+=:${SDKPATH}/third_party/exactle/ws-core/sw/wsf/common
+VPATH+=:${SDKPATH}/third_party/exactle/ws-core/sw/wsf/ambiq
+VPATH+=:${SDKPATH}/third_party/exactle/sw/apps/app/generic
+VPATH+=:${SDKPATH}/third_party/exactle/sw/sec/common
+VPATH+=:${SDKPATH}/third_party/exactle/sw/profiles/fmpl
+VPATH+=:${SDKPATH}/third_party/uecc/micro-ecc
+
+VPATH+= ${SDKPATH}/devices
 VPATH+= ${SDKPATH}/utils
 VPATH+= ${USER_SOURCEDIRS}
 
 SRC = ${USER_MAIN_SRC}
-SRC += am_devices_led.c
+SRC += bda.c
+SRC += bstream.c
+SRC += calc128.c
+SRC += crc32.c
+SRC += print.c
+SRC += terminal.c
+SRC += wstr.c
+SRC += hid_main.c
+SRC += hci_drv_apollo3.c
+SRC += hidapp_main.c
+SRC += gatt_main.c
+SRC += gap_main.c
+SRC += hci_main.c
+SRC += hci_cmd.c
+SRC += hci_core.c
+SRC += hci_core_ps.c
+SRC += hci_evt.c
+SRC += hci_tr.c
+SRC += hci_vs.c
+SRC += bas_main.c
+SRC += wsf_buf.c
+SRC += wsf_efs.c
+SRC += wsf_msg.c
+SRC += wsf_queue.c
+SRC += wsf_timer.c
+SRC += wsf_assert.c
+SRC += wsf_math.c
+SRC += wsf_os.c
+SRC += wsf_trace.c
+SRC += app_db.c
+SRC += app_hw.c
+SRC += app_ui.c
+SRC += sec_aes.c
+SRC += sec_cmac.c
+SRC += sec_ecc_hci.c
+SRC += sec_main.c
+SRC += fmpl_main.c
+SRC += cfg_stack.c
+SRC += am_devices_button.c
+SRC += app_disc.c
+SRC += app_main.c
+SRC += app_master.c
+SRC += app_master_leg.c
+SRC += app_server.c
+SRC += app_slave.c
+SRC += app_slave_leg.c
+SRC += app_terminal.c
+SRC += svc_batt.c
+SRC += svc_bps.c
+SRC += svc_core.c
+SRC += svc_cps.c
+SRC += svc_cscs.c
+SRC += svc_dis.c
+SRC += svc_gls.c
+SRC += svc_gyro.c
+SRC += svc_hid.c
+SRC += svc_hrs.c
+SRC += svc_hts.c
+SRC += svc_ipss.c
+SRC += svc_plxs.c
+SRC += svc_px.c
+SRC += svc_rscs.c
+SRC += svc_scpss.c
+SRC += svc_temp.c
+SRC += svc_uricfg.c
+SRC += svc_wdxs.c
+SRC += svc_wp.c
+SRC += svc_wss.c
+SRC += tag_main.c
 SRC += am_util_delay.c
 SRC += am_util_faultisr.c
 SRC += am_util_stdio.c
@@ -140,6 +258,10 @@ DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
 LIBS = ${BOARDPATH}/bsp/gcc/bin/libam_bsp.a
 LIBS += ${SDKPATH}/mcu/apollo3/hal/gcc/bin/libam_hal.a
+# Extra libs for bluetooth
+LIBS += ${SDKPATH}/third_party/exactle/projects/generic/stacklib/gcc/bin-cortex-m4/libstacklib.a
+LIBS += ${SDKPATH}/third_party/uecc/gcc/bin/lib_uecc.a
+
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
 CFLAGS+= -ffunction-sections -fdata-sections
@@ -194,6 +316,10 @@ clean:
 	    $(CONFIG)/$(TARGET).lst $(CONFIG)/$(TARGET).map
 
 $(CONFIG)/%.d: ;
+
+# Extra lib needed
+${SDKPATH}/third_party/uecc/gcc/bin/lib_uecc.a:
+	$(MAKE) -C ../../../../../third_party/uecc
 
 ${BOARDPATH}/bsp/gcc/bin/libam_bsp.a:
 	$(MAKE) -C ${BOARDPATH}/bsp
