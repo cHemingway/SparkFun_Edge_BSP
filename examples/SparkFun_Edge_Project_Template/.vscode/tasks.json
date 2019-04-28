@@ -47,7 +47,7 @@
             },
             // Linux or OSX command
             "type" :"shell",
-            "command": "make",
+            "command": "make SDKPATH=${input:sdk_path}",
             "group": {
                 "kind": "build",
                 "isDefault": true
